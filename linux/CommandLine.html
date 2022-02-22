@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Linux Cheatsheet</title>
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+
+		<header>
+			<h1>LINUX COMMAND LINE</h1>
+			<h3>A QUICK REFERENCE GUIDE from:</h3>
+			<a href="https://www.LinuxTrainingAcademy.com" target="_blank">LinuxTrainingAcademy.com</a>
+		</header>
+
+		<nav>
+			<h1 id="00">Table of Contents</h1>
+			<ol>
+				<li><a href="#01">SYSTEM INFORMATION</a></li>
+				<li><a href="#02">HARDWARE INFORMATION</a></li>
+				<li><a href="#03">PERFORMANCE MONITORING AND STATISTICS</a></li>
+				<li><a href="#04">USER INFORMATION AND MANAGEMENT</a></li>
+				<li><a href="#05">FILE AND DIRECTORY COMMANDS</a></li>
+				<li><a href="#06">PROCESS MANAGEMENT</a></li>
+				<li><a href="#07">FILE PERMISSIONS</a></li>
+				<li><a href="#08">NETWORKING</a></li>
+				<li><a href="#09">ARCHIVES (TAR FILES)</a></li>
+				<li><a href="#10">INSTALLING PACKAGES</a></li>
+				<li><a href="#11">SEARCH</a></li>
+				<li><a href="#12">SSH LOGINS</a></li>
+				<li><a href="#13">FILE TRANSFERS</a></li>
+				<li><a href="#14">DISK USAGE</a></li>
+				<li><a href="#15">DIRECTORY NAVIGATION</a></li>
+			</ol>
+		</nav>
+
+		<main>
+
+			<div class="page">
+				<h2 id="01">SYSTEM INFORMATION</h2>
+				<p><code>uname -a</code> <span> # Display Linux system information</span></p>
+				<p><code>uname -r</code> <span> # Display kernel release information</span></p>
+				<p><code>cat /etc/redhat-release</code> <span> # Show which version of Red Hat installed</span></p>
+				<p><code>uptime</code> <span> # Show how long the system has been running + load</span></p>
+				<p><code>hostname</code> <span> # Show system host name</span></p>
+				<p><code>hostname -I</code> <span> # Display all local IP addresses of the host</span></p>
+				<p><code>last reboot</code> <span> # Show system reboot history</span></p>
+				<p><code>date</code> <span> # Show the current date and time</span></p>
+				<p><code>cal</code> <span> # Show this month's calendar</span></p>
+				<p><code>w</code> <span> # Display who is online</span></p>
+				<p><code>whoami</code> <span> # Who you are logged in as</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="02">HARDWARE INFORMATION</h2>
+				<p><code>dmesg</code> <span> # Display messages in kernel ring buffer</span></p>
+				<p><code>cat /proc/cpuinfo</code> <span> # Display CPU information</span></p>
+				<p><code>cat /proc/meminfo</code> <span> # Display memory information</span></p>
+				<p>
+					<code>free -h</code> <span> # Display free and used memory ( -h for human readable, -m for MB, -g
+					for GB.) </span>
+				</p>
+				<p><code>lspci -tv</code> <span> # Display PCI devices</span></p>
+				<p><code>lsusb -tv</code> <span> # Display USB devices</span></p>
+				<p><code>dmidecode</code> <span> # Display DMI/SMBIOS (hardware info) from the BIOS</span></p>
+				<p><code>hdparm -i /dev/sda</code> <span> # Show info about disk sda</span></p>
+				<p><code>hdparm -tT /dev/sda</code> <span> # Perform a read speed test on disk sda</span></p>
+				<p><code>badblocks -s /dev/sda</code> <span> # Test for unreadable blocks on disk sda</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="03">PERFORMANCE MONITORING AND STATISTICS</h2>
+				<p><code>top</code> <span> # Display and manage the top processes</span></p>
+				<p><code>htop</code> <span> # Interactive process viewer (top alternative)</span></p>
+				<p><code>mpstat 1</code> <span> # Display processor related statistics</span></p>
+				<p><code>vmstat 1</code> <span> # Display virtual memory statistics</span></p>
+				<p><code>iostat 1</code> <span> # Display I/O statistics</span></p>
+				<p>
+					<code>tail -100 /var/log/messages</code> <span> # Display the last 100 syslog messages (Use
+					/var/log/syslog for Debian based systems.)
+				</span></p>
+				<p><code>tcpdump -i eth0</code> <span> # Capture and display all packets on interface eth0</span></p>
+				<p><code>tcpdump -i eth0 'port 80'</code> <span> # Monitor all traffic on port 80 ( HTTP )</span></p>
+				<p><code>lsof</code> <span> # List all open files on the system</span></p>
+				<p><code>lsof -u user</code> <span> # List files opened by user</span></p>
+				<p>
+					<code>free -h</code> <span> # Display free and used memory ( -h for human readable, -m for MB, -g
+					for GB.)
+				</span></p>
+				<p><code>watch df -h</code> <span> # Execute "df -h", showing periodic updates</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="04">USER INFORMATION AND MANAGEMENT</h2>
+				<p><code>id</code> <span> # Display the user and group ids of your current user.</span></p>
+				<p><code>last</code> <span> # Display the last users who have logged onto the system.</span></p>
+				<p><code>who</code> <span> # Show who is logged into the system.</span></p>
+				<p><code>w</code> <span> # Show who is logged in and what they are doing.</span></p>
+				<p><code>groupadd test</code> <span> # Create a group named "test".</span></p>
+				<p>
+					<code>useradd -c "John Smith" -m john</code> <span> # Create an account named john, with a comment
+					of "John Smith" and create the user's home
+				</span></p>
+				directory.
+				<p><code>userdel john</code> <span> # Delete the john account.</span></p>
+				<p><code>usermod -aG sales john</code> <span> # Add the john account to the sales group</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="05">FILE AND DIRECTORY COMMANDS</h2>
+				<p><code>ls -al</code> <span> # List all files in a long listing (detailed) format</span></p>
+				<p><code>pwd</code> <span> # Display the present working directory</span></p>
+				<p><code>mkdir directory</code> <span> # Create a directory</span></p>
+				<p><code>rm file</code> <span> # Remove (delete) file</span></p>
+				<p><code>rm -r directory</code> <span> # Remove the directory and its contents recursively</span></p>
+				<p><code>rm -f file</code> <span> # Force removal of file without prompting for confirmation</span></p>
+				<p><code>rm -rf directory</code> <span> # Forcefully remove directory recursively</span></p>
+				<p><code>cp file1 file2</code> <span> # Copy file1 to file2</span></p>
+				<p>
+					<code>cp -r source_directory destination</code> <span> # Copy source_directory recursively to
+					destination . If destination exists, copy source_directory into destination , otherwise
+					create destination with the contents of source_directory .
+				</span></p>
+				<p>
+					<code>mv file1 file2</code> <span> # Rename or move file1 to file2 . If file2 is an existing
+					directory, move file1 into directory file2
+				</span></p>
+				<p><code>ln -s /path/to/file linkname</code> <span> # Create symbolic link to linkname</span></p>
+				<p>
+					<code>touch file</code> <span> # Create an empty file or update the access and modification times
+					of file.
+				</span></p>
+				<p><code>cat file</code> <span> # View the contents of file</span></p>
+				<p><code>less file</code> <span> # Browse through a text file</span></p>
+				<p><code>head file</code> <span> # Display the first 10 lines of file</span></p>
+				<p><code>tail file</code> <span> # Display the last 10 lines of file</span></p>
+				<p>
+					<code>tail -f file</code> <span> # Display the last 10 lines of file and "follow" the file as it
+					grows.
+				</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="06">PROCESS MANAGEMENT</h2>
+				<p><code>ps</code> <span> # Display your currently running processes</span></p>
+				<p><code>ps -ef</code> <span> # Display all the currently running processes on the system.</span></p>
+				<p><code>ps -ef | grep processname</code> <span> # Display process information for processname</span></p>
+				<p><code>top</code> <span> # Display and manage the top processes</span></p>
+				<p><code>htop</code> <span> # Interactive process viewer (top alternative)</span></p>
+				<p><code>kill pid</code> <span> # Kill process with process ID of p id</span></p>
+				<p><code>killall processname</code> <span> # Kill all processes named processname</span></p>
+				<p><code>program &</code> <span> # Start program in the background</span></p>
+				<p><code>bg</code> <span> # Display stopped or background jobs</span></p>
+				<p><code>fg</code> <span> # Brings the most recent background job to foreground</span></p>
+				<p><code>fg n</code> <span> # Brings job n to the foreground</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="07">FILE PERMISSIONS</h2>
+				<p>
+					PERMISSION EXAMPLE <br />
+					U G W <br />
+				</p>
+				<p><code>rwx rwx rwx chmod 777 filename</code> <span> # Use sparingly!</span></p>
+				<p><code>rwx rwx r-x chmod 775 filename</code></p>
+				<p><code>rwx r-x r-x chmod 755 filename</code></p>
+				<p><code>rw- rw- r-- chmod 664 filename</code></p>
+				<p><code>rw- r-- r-- chmod 644 filename</code></p>
+				<br>
+				<p>
+					LEGEND <br />
+					U = User <br />
+					G = Group <br />
+					W = World <br />
+					r = Read <br />
+					w = write <br />
+					x = execute <br />
+					- = no access <br />
+				</p>
+			</div>
+
+			<div class="page">
+				<h2 id="08">NETWORKING</h2>
+				<p><code>ip a</code> <span> # Display all network interfaces and IP address</span></p>
+				<p><code>ip addr show dev eth0</code> <span> # Display eth0 address and details</span></p>
+				<p><code>ethtool eth0</code> <span> # Query or control network driver and hardware settings</span></p>
+				<p><code>ping host</code> <span> # Send ICMP echo request to host</span></p>
+				<p><code>whois domain</code> <span> # Display whois information for domain</span></p>
+				<p><code>dig domain</code> <span> # Display DNS information for domain</span></p>
+				<p><code>dig -x IP_ADDRESS</code> <span> # Reverse lookup of IP_ADDRESS</span></p>
+				<p><code>host domain</code> <span> # Display DNS IP address for domain</span></p>
+				<p><code>hostname -i</code> <span> # Display the network address of the host name.</span></p>
+				<p><code>hostname -I</code> <span> # Display all local IP addresses of the host.</span></p>
+				<p><code>wget http://domain.com/file</code> <span> # Download http://domain.com/file</span></p>
+				<p>
+					<code>netstat -nutlp</code> <span> # Display listening tcp and udp ports and corresponding programs
+				</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="09">ARCHIVES (TAR FILES)</h2>
+				<p>
+					<code>tar cf archive.tar directory</code> <span> # Create tar named archive.tar containing
+					directory.
+				</span></p>
+				<p><code>tar xf archive.tar</code> <span> # Extract the contents from archive.tar .</span></p>
+				<p>
+					<code>tar czf archive.tar.gz directory</code> <span> # Create a gzip compressed tar file name
+					archive.tar.gz .
+				</span></p>
+				<p><code>tar xzf archive.tar.gz</code> <span> # Extract a gzip compressed tar file.</span></p>
+				<p>
+					<code>tar cjf archive.tar.bz2 directory</code> <span> # Create a tar file with bzip2 compression
+				</span></p>
+				<p><code>tar xjf archive.tar.bz2</code> <span> # Extract a bzip2 compressed tar file.</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="10">1INSTALLING PACKAGES</h2>
+				<p><code>yum search keyword</code> <span> # Search for a package by keyword .</span></p>
+				<p><code>yum install package</code> <span> # Install package .</span></p>
+				<p>
+					<code>yum info package</code> <span> # Display description and summary information about package.
+				</span></p>
+				<p><code>rpm -i package.rpm</code> <span> # Install package from local file named package.rpm</span></p>
+				<p><code>yum remove package</code> <span> # Remove/uninstall package .</span></p>
+				<p><code>tar zxvf sourcecode.tar.gz</code></p>
+				<p><code>cd sourcecode</code></p>
+				<p><code>./configure</code></p>
+				<p><code>make</code></p>
+				<p><code>make install</code></p>
+				<br>
+				<p>Install software from source code.</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="11">1SEARCH</h2>
+				<p><code>grep pattern file</code> <span> # Search for pattern in file</span></p>
+				<p><code>grep -r pattern directory</code> <span> # Search recursively for pattern in directory</span></p>
+				<p><code>locate name</code> <span> # Find files and directories by name</span></p>
+				<p>
+					<code>find /home/john -name 'prefix*'</code> <span> # Find files in /home/john that start with
+					"prefix".
+				</span></p>
+				<p><code>find /home -size +100M</code> <span> # Find files larger than 100MB in /home</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="12">1SSH LOGINS</h2>
+				<p><code>ssh host</code> <span> # Connect to host as your local username.</span></p>
+				<p><code>ssh user@host</code> <span> # Connect to host as user</span></p>
+				<p><code>ssh -p port user@host</code> <span> # Connect to host using port</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="13">1FILE TRANSFERS</h2>
+				<p>
+					<code>scp file.txt server:/tmp</code> <span> # Secure copy file.txt to the /tmp folder on server
+				</span></p>
+				<p>
+					<code>scp server:/var/www/*.html /tmp</code> <span> # Copy *.html files from server to the local
+					/tmp folder.
+				</span></p>
+				<p>
+					<code>scp -r server:/var/www /tmp</code> <span> # Copy all files and directories recursively from
+					server to the current system's /tmp folder.
+				</span></p>
+				<p><code>rsync -a /home /backups/</code> <span> # Synchronize /home to /backups/home</span></p>
+				<p>
+					<code>rsync -avz /home server:/backups/</code> <span> # Synchronize files/directories between the
+					local and remote system with compression enabled
+				</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="14">1DISK USAGE</h2>
+				<p><code>df -h</code> <span> # Show free and used space on mounted filesystems</span></p>
+				<p><code>df -i</code> <span> # Show free and used inodes on mounted filesystems</span></p>
+				<p><code>fdisk -l</code> <span> # Display disks partitions sizes and types</span></p>
+				<p>
+					<code>du -ah</code> <span> # Display disk usage for all files and directories in human readable
+					format
+				</span></p>
+				<p><code>du -sh</code> <span> # Display total disk usage off the current directory</span></p>
+			</div>
+
+			<div class="page">
+				<h2 id="15">1DIRECTORY NAVIGATION</h2>
+				<p>
+					<code>cd ..</code> <span> # To go up one level of the directory tree. (Change into the parent
+					directory.)
+				</span></p>
+				<p><code>cd</code> <span> # Go to the $HOME directory</span></p>
+				<p><code>cd /etc</code> <span> # Change to the /etc directory</span></p>
+			</div>
+
+		</main>
+
+		<a id="to-top" href="#00">^</a>
+
+		<script src="/main.js"></script>
+	</body>
+</html>
